@@ -100,7 +100,7 @@ namespace TDDProject.Application
             var account = Accounts.SingleOrDefault(x => x.Owner.Name == name && x.Owner.Surname == surname && x.AccountNumber == accountNumber);
 
             if (account is null)
-                throw new AccountNotFoundException();
+                throw new AccountNotFoundException($"Account number '{account}' does not exists.");
 
             Accounts.Remove(account);
         }
