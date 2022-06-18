@@ -34,10 +34,18 @@ namespace TDDProject.Application
             if (string.IsNullOrEmpty(surname) || string.IsNullOrWhiteSpace(surname))
                 throw new ArgumentException($"Parameter '{nameof(surname)}' cannot be empty");
 
+            string number = string.Empty;
+            Random rand = new Random();
+
+            for (int i = 0; i <= 26; i++)
+            {
+                number += rand.Next(0, 9);
+            }
+
             Accounts.Add(new BankAccount()
             {
                 Balance = 0.00m,
-                AccountNumber = "00000000000000000000000000",
+                AccountNumber = number,
                 Owner = new Owner()
                 {
                     Name = name,
