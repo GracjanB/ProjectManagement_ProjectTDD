@@ -45,5 +45,19 @@ namespace TDDProject.Tests
                 Bank.CreateAccount(name, surname);
             });
         }
+
+        [Test]
+        public void CreateAccount_EmptySurname_Test()
+        {
+            // Arrange
+            string name = "Gracjan";
+            string surname = string.Empty;
+
+            // Assert
+            Assert.Throws(typeof(ArgumentException), () =>
+            {
+                Bank.CreateAccount(name, surname);
+            });
+        }
     }
 }
