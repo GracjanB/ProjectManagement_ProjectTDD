@@ -25,9 +25,19 @@ namespace TDDProject.Application
         }
 
 
-        public void CreateAccount()
+        public void CreateAccount(string name, string surname)
         {
-            Accounts.Add(new BankAccount());
+            var bankAccount = new BankAccount()
+            {
+                Balance = 0.00m,
+                Owner = new Owner()
+                {
+                    Name = name,
+                    Surname = surname
+                }
+            };
+
+            Accounts.Add(bankAccount);
         }
     }
 }
