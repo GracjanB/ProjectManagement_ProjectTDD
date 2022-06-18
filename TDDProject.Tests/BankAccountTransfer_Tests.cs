@@ -17,7 +17,8 @@ namespace TDDProject.Tests
             Bank.CreateAccount("Jan", "Nowak");
         }
 
-        private void Transfer_Test()
+        [Test]
+        public void Transfer_Test()
         {
             // Arrange
             string sourceAccountNumber = Bank.Accounts[0].AccountNumber;

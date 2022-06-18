@@ -77,12 +77,21 @@ namespace TDDProject.Application
             account.Balance -= withdrawal;
         }
 
+        public void Transfer(string source, string destination, decimal moneyToTransfer)
+        {
+            var sourceAccount = Accounts.Single(x => x.AccountNumber == source);
+            var destinationAccount = Accounts.Single(x => x.AccountNumber == destination);
+
+            sourceAccount.Balance -= moneyToTransfer;
+            destinationAccount.Balance += moneyToTransfer;
+        }
+
         private string GenerateAccountNumber()
         {
             string number = string.Empty;
             Random rand = new Random();
 
-            for (int i = 0; i <= 26; i++)
+            for (int i = 0; i < 26; i++)
             {
                 number += rand.Next(0, 9);
             }
