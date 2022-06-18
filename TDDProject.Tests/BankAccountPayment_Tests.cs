@@ -58,6 +58,36 @@ namespace TDDProject.Tests
             });
         }
 
+        [Test]
+        public void PaymentOnAccount_AccountNumberCheck_Test()
+        {
+            // Arrange
+            decimal deposit = 100.00m;
+
+            // Assert
+            Assert.Throws(typeof(ArgumentException), () =>
+            {
+                string accountNumber = "908324092384";
+
+                Bank.Deposit(accountNumber, deposit);
+            });
+
+            Assert.Throws(typeof(ArgumentException), () =>
+            {
+                string accountNumber = null;
+
+                Bank.Deposit(accountNumber, deposit);
+            });
+
+            Assert.Throws(typeof(ArgumentException), () =>
+            {
+                // 26 literals, account number should be 26 character (but digits) long
+                string accountNumber = "QAZWSXEDCRFVTGBYHNUJMIKOLP";
+
+                Bank.Deposit(accountNumber, deposit);
+            });
+        }
+
 
     }
 }
