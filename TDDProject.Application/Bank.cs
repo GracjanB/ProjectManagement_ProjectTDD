@@ -69,6 +69,9 @@ namespace TDDProject.Application
             if (account is null)
                 throw new AccountNotFoundException($"Account number '{accountNumber}' does not exists.");
 
+            if (withdrawal <= 0.00m)
+                throw new ArgumentException();
+
             account.Balance -= withdrawal;
         }
 
