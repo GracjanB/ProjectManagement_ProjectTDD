@@ -31,8 +31,8 @@ namespace TDDProject.Application
             if (string.IsNullOrEmpty(name) || string.IsNullOrWhiteSpace(name))
                 throw new ArgumentException($"Parameter '{nameof(name)}' cannot be empty");
 
-            if (string.IsNullOrEmpty(surname))
-                throw new ArgumentException();
+            if (string.IsNullOrEmpty(surname) || string.IsNullOrWhiteSpace(surname))
+                throw new ArgumentException($"Parameter '{nameof(surname)}' cannot be empty");
 
             Accounts.Add(new BankAccount()
             {
