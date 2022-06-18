@@ -54,6 +54,9 @@ namespace TDDProject.Application
             if (account is null)
                 throw new AccountNotFoundException($"Account number '{accountNumber}' does not exists.");
 
+            if (deposit <= 0.00m)
+                throw new ArgumentException($"Deposit cannot be smaller than 0.00");
+
             account.Balance += deposit;
         }
 
