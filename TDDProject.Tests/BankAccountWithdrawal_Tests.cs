@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using System;
 using TDDProject.Application;
+using TDDProject.Application.Models;
 
 namespace TDDProject.Tests
 {
@@ -86,6 +87,22 @@ namespace TDDProject.Tests
                 string accountNumber = "QAZWSXEDCRFVTGBYHNUJMIKOLP";
 
                 Bank.Withdrawal(accountNumber, withdrawal);
+            });
+        }
+
+        [Test]
+        public void Withdrawal_BalanceCheck_Test()
+        {
+            // Arrange
+            BankAccount myAccount = Bank.Accounts[0];
+            myAccount.Balance = 200.00m;
+
+            // Assert
+            Assert.Throws(typeof(InsufficientFundsException), () =>
+            {
+                decimal withdrawal = 300.00m;
+
+                Bank.Deposit(myAccount.AccountNumber, withdrawal);
             });
         }
     }
