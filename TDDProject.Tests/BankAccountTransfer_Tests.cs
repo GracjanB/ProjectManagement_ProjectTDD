@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using System;
 using TDDProject.Application;
 
 namespace TDDProject.Tests
@@ -55,6 +56,23 @@ namespace TDDProject.Tests
             Assert.Throws(typeof(AccountNotFoundException), () =>
             {
                 Bank.Transfer(sourceAccountNumber, fakeAccount, moneyToSend);
+            });
+        }
+
+        [Test]
+        public void Transfer_MoneyToSendCheck_Test()
+        {
+            // Arrange
+            string sourceAccountNumber = Bank.Accounts[0].AccountNumber;
+            string destinationAccountNumber = Bank.Accounts[1].AccountNumber;
+            Bank.Accounts[0].Balance = 1000.00m;
+            Bank.Accounts[1].Balance = 500.00m;
+            decimal moneyToSend = 0.00m;
+
+            // Assert
+            Assert.Throws(typeof(AccountNotFoundException), () =>
+            {
+                Bank.Transfer(sourceAccountNumber, destinationAccountNumber, moneyToSend);
             });
         }
     }
