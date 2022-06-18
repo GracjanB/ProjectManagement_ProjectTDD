@@ -37,6 +37,7 @@ namespace TDDProject.Application
             Accounts.Add(new BankAccount()
             {
                 Balance = 0.00m,
+                AccountNumber = "00000000000000000000000000",
                 Owner = new Owner()
                 {
                     Name = name,
