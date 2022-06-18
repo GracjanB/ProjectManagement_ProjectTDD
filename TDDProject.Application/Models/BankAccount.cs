@@ -5,5 +5,7 @@
         public string AccountNumber { get; set; }
 
         public decimal Balance { get; set; }
+
+        public Owner Owner { get; set; }
     }
 }
