@@ -26,6 +26,15 @@ namespace TDDProject.Application
             Accounts = new List<BankAccount>();
         }
 
+        public BankAccount GetAccount(string name, string surname)
+        {
+            return Accounts.SingleOrDefault(x => x.Owner.Name == name && x.Owner.Surname == surname);
+        }
+
+        public BankAccount GetAccount(string number)
+        {
+            return Accounts.SingleOrDefault(x => x.AccountNumber == number);
+        }
 
         public void CreateAccount(string name, string surname)
         {
