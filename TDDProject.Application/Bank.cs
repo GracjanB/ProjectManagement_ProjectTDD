@@ -49,6 +49,19 @@ namespace TDDProject.Application
 
         public void Deposit(string accountNumber, decimal deposit)
         {
+            if (string.IsNullOrEmpty(accountNumber))
+                throw new ArgumentException();
+
+            if (accountNumber.Length != 26)
+                throw new ArgumentException();
+
+            bool result = true;
+            foreach (char c in accountNumber)
+                result &= char.IsDigit(c);
+
+            if (!result)
+                throw new ArgumentException();
+
             var account = Accounts.SingleOrDefault(x => x.AccountNumber == accountNumber);
 
             if (account is null)
