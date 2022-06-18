@@ -87,7 +87,7 @@ namespace TDDProject.Tests
             decimal moneyToSend = 300.00m;
 
             // Assert
-            Assert.Throws(typeof(AccountNotFoundException), () =>
+            Assert.Throws(typeof(InsufficientFundsException), () =>
             {
                 Bank.Transfer(sourceAccountNumber, destinationAccountNumber, moneyToSend);
             });
