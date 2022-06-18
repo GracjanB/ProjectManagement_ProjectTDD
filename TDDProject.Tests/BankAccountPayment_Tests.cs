@@ -43,6 +43,21 @@ namespace TDDProject.Tests
             });
         }
 
+        [Test]
+        public void PaymentOnAccount_DepositAmountCheck_Test()
+        {
+            // Arrange
+            string myAccountNumber = Bank.Accounts[0].AccountNumber;
+
+            // Assert
+            Assert.Throws(typeof(ArgumentException), () =>
+            {
+                decimal deposit = 0.00m;
+
+                Bank.Deposit(myAccountNumber, deposit);
+            });
+        }
+
 
     }
 }
