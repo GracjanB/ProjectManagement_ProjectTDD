@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using System;
 using TDDProject.Application;
 
 namespace TDDProject.Tests
@@ -34,12 +35,27 @@ namespace TDDProject.Tests
         {
             // Arrange
             string myAccountNumber = "1345236354764314123";
-            decimal deposit = 100.00m;
+            decimal withdrawal = 100.00m;
 
             // Assert
             Assert.Throws(typeof(AccountNotFoundException), () =>
             {
-                Bank.Deposit(myAccountNumber, deposit);
+                Bank.Withdrawal(myAccountNumber, withdrawal);
+            });
+        }
+
+        [Test]
+        public void Withdrawal_AmountCheck_Test()
+        {
+            // Arrange
+            string myAccountNumber = Bank.Accounts[0].AccountNumber;
+
+            // Assert
+            Assert.Throws(typeof(ArgumentException), () =>
+            {
+                decimal withdrawal = 0.00m;
+
+                Bank.Deposit(myAccountNumber, withdrawal);
             });
         }
     }
