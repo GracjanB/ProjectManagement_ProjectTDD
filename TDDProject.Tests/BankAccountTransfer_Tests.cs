@@ -75,5 +75,22 @@ namespace TDDProject.Tests
                 Bank.Transfer(sourceAccountNumber, destinationAccountNumber, moneyToSend);
             });
         }
+
+        [Test]
+        public void Transfer_SourceAccountBalanceCheck_Test()
+        {
+            // Arrange
+            string sourceAccountNumber = Bank.Accounts[0].AccountNumber;
+            string destinationAccountNumber = Bank.Accounts[1].AccountNumber;
+            Bank.Accounts[0].Balance = 200.00m;
+            Bank.Accounts[1].Balance = 500.00m;
+            decimal moneyToSend = 300.00m;
+
+            // Assert
+            Assert.Throws(typeof(AccountNotFoundException), () =>
+            {
+                Bank.Transfer(sourceAccountNumber, destinationAccountNumber, moneyToSend);
+            });
+        }
     }
 }
