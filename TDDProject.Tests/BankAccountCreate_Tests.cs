@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using System;
 using System.Linq;
 using TDDProject.Application;
 
@@ -29,6 +30,20 @@ namespace TDDProject.Tests
             Assert.AreEqual(1, Bank.Accounts.Count);
             Assert.AreEqual(name, Bank.Accounts[0].Owner.Name);
             Assert.AreEqual(surname, Bank.Accounts[0].Owner.Surname);
+        }
+
+        [Test]
+        public void CreateAccount_EmptyName_Test()
+        {
+            // Arrange
+            string name = string.Empty;
+            string surname = "Bryt";
+
+            // Assert
+            Assert.Throws(typeof(ArgumentException), () =>
+            {
+                Bank.CreateAccount(name, surname);
+            });
         }
     }
 }
