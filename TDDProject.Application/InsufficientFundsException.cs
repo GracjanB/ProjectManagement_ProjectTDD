@@ -4,22 +4,14 @@ using System.Runtime.Serialization;
 namespace TDDProject.Application
 {
     [Serializable]
-    internal class InsufficientFundsException : Exception
+    public class InsufficientFundsException : Exception
     {
-        public InsufficientFundsException()
-        {
-        }
+        public InsufficientFundsException() { }
 
-        public InsufficientFundsException(string message) : base(message)
-        {
-        }
+        public InsufficientFundsException(string message) : base(message) { }
 
-        public InsufficientFundsException(string message, Exception innerException) : base(message, innerException)
-        {
-        }
+        public InsufficientFundsException(string message, Exception innerException) : base(message, innerException)  { }
 
-        protected InsufficientFundsException(SerializationInfo info, StreamingContext context) : base(info, context)
-        {
-        }
+        protected InsufficientFundsException(SerializationInfo info, StreamingContext context) : base(info, context) { }
     }
 }
