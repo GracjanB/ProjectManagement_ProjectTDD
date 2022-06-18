@@ -18,5 +18,16 @@ namespace TDDProject.Application
             }
         }
 
+
+        public Bank()
+        {
+            Accounts = new List<BankAccount>();
+        }
+
+
+        public void CreateAccount()
+        {
+            Accounts.Add(new BankAccount());
+        }
     }
 }

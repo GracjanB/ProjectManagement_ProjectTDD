@@ -16,6 +16,8 @@ namespace TDDProject.Tests
         [Test]
         public void CreateAccount_Test()
         {
+            Bank.CreateAccount();
+
             Assert.AreNotEqual(null, Bank.Accounts);
             Assert.AreEqual(1, Bank.Accounts.Count);
         }
