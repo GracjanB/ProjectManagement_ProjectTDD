@@ -59,5 +59,21 @@ namespace TDDProject.Tests
                 Bank.CreateAccount(name, surname);
             });
         }
+
+        [Test]
+        public void CreateAccount_CheckIfAccountNumberCorrect_Test()
+        {
+            // Arrange
+            var localBank = new Bank();
+            string name = "Gracjan";
+            string surname = "Bryt";
+
+            // Act
+            localBank.CreateAccount(name, surname);
+
+            // Assert
+            Assert.IsFalse(string.IsNullOrEmpty(localBank.Accounts[0].AccountNumber));
+            Assert.AreEqual(26, localBank.Accounts[0].AccountNumber.Length);
+        }
     }
 }
