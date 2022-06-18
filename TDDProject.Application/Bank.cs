@@ -89,7 +89,7 @@ namespace TDDProject.Application
                 throw new AccountNotFoundException($"Account number '{destinationAccount}' does not exists.");
 
             if (moneyToTransfer <= 0.00m)
-                throw new ArgumentException();
+                throw new ArgumentException($"Money to transfer cannot be smaller than 0.00");
 
             sourceAccount.Balance -= moneyToTransfer;
             destinationAccount.Balance += moneyToTransfer;
