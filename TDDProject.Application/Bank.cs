@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using TDDProject.Application.Models;
 
 namespace TDDProject.Application
@@ -27,6 +28,9 @@ namespace TDDProject.Application
 
         public void CreateAccount(string name, string surname)
         {
+            if (string.IsNullOrEmpty(name))
+                throw new ArgumentException();
+
             Accounts.Add(new BankAccount()
             {
                 Balance = 0.00m,
