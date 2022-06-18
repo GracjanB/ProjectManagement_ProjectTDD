@@ -83,10 +83,10 @@ namespace TDDProject.Application
             var destinationAccount = Accounts.SingleOrDefault(x => x.AccountNumber == destination);
 
             if (sourceAccount is null)
-                throw new AccountNotFoundException();
+                throw new AccountNotFoundException($"Account number '{sourceAccount}' does not exists.");
 
             if (destinationAccount is null)
-                throw new AccountNotFoundException();
+                throw new AccountNotFoundException($"Account number '{destinationAccount}' does not exists.");
 
             sourceAccount.Balance -= moneyToTransfer;
             destinationAccount.Balance += moneyToTransfer;
