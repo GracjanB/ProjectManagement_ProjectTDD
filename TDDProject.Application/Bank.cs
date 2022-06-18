@@ -28,8 +28,8 @@ namespace TDDProject.Application
 
         public void CreateAccount(string name, string surname)
         {
-            if (string.IsNullOrEmpty(name))
-                throw new ArgumentException();
+            if (string.IsNullOrEmpty(name) || string.IsNullOrWhiteSpace(name))
+                throw new ArgumentException($"Parameter '{nameof(name)}' cannot be empty");
 
             Accounts.Add(new BankAccount()
             {
