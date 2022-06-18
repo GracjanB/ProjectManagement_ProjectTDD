@@ -95,6 +95,13 @@ namespace TDDProject.Application
             destinationAccount.Balance += moneyToTransfer;
         }
 
+        public void DeleteAccount(string name, string surname, string accountNumber)
+        {
+            var account = Accounts.Single(x => x.Owner.Name == name && x.Owner.Surname == surname && x.AccountNumber == accountNumber);
+
+            Accounts.Remove(account);
+        }
+
         private string GenerateAccountNumber()
         {
             string number = string.Empty;
