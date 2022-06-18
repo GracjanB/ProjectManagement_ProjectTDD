@@ -28,5 +28,19 @@ namespace TDDProject.Tests
             // Assert
             Assert.AreEqual(900.00, Bank.Accounts[0].Balance);
         }
+
+        [Test]
+        public void Withdrawal_AccountNotFound_Test()
+        {
+            // Arrange
+            string myAccountNumber = "1345236354764314123";
+            decimal deposit = 100.00m;
+
+            // Assert
+            Assert.Throws(typeof(AccountNotFoundException), () =>
+            {
+                Bank.Deposit(myAccountNumber, deposit);
+            });
+        }
     }
 }
