@@ -49,7 +49,7 @@ namespace TDDProject.Application
 
         public void Deposit(string accountNumber, decimal deposit)
         {
-            var account = Accounts.First(x => x.AccountNumber == accountNumber);
+            var account = Accounts.Single(x => x.AccountNumber == accountNumber);
 
             account.Balance += deposit;
         }
