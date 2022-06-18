@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using TDDProject.Application.Models;
 
 namespace TDDProject.Application
@@ -44,6 +45,13 @@ namespace TDDProject.Application
                     Surname = surname
                 }
             });
+        }
+
+        public void Deposit(string accountNumber, decimal deposit)
+        {
+            var account = Accounts.First(x => x.AccountNumber == accountNumber);
+
+            account.Balance += deposit;
         }
 
         private string GenerateAccountNumber()
