@@ -64,6 +64,8 @@ namespace TDDProject.Application
 
         public void Withdrawal(string accountNumber, decimal withdrawal)
         {
+            ValidateAccountNumber(ref accountNumber);
+
             var account = Accounts.SingleOrDefault(x => x.AccountNumber == accountNumber);
 
             if (account is null)
