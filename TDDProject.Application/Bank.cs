@@ -49,18 +49,7 @@ namespace TDDProject.Application
 
         public void Deposit(string accountNumber, decimal deposit)
         {
-            if (string.IsNullOrEmpty(accountNumber))
-                throw new ArgumentException();
-
-            if (accountNumber.Length != 26)
-                throw new ArgumentException();
-
-            bool result = true;
-            foreach (char c in accountNumber)
-                result &= char.IsDigit(c);
-
-            if (!result)
-                throw new ArgumentException();
+            ValidateAccountNumber(ref accountNumber);
 
             var account = Accounts.SingleOrDefault(x => x.AccountNumber == accountNumber);
 
@@ -84,6 +73,18 @@ namespace TDDProject.Application
             }
 
             return number;
+        }
+
+        private void ValidateAccountNumber(ref string number)
+        {
+            if (string.IsNullOrEmpty(number))
+                throw new ArgumentException("Incorrect format of account number.");
+
+            if (number.Length != 26)
+                throw new ArgumentException("Incorrect format of account number. Should be 26 characters long.");
+
+            if (!number.ToCharArray().All(c => char.IsDigit(c)))
+                throw new ArgumentException("Account number contains forbidden characters.");
         }
     }
 }
