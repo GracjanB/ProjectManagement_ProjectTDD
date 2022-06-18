@@ -101,7 +101,7 @@ namespace TDDProject.Application
                 throw new ArgumentException($"Money to transfer cannot be smaller than 0.00");
 
             if (sourceAccount.Balance < moneyToTransfer)
-                throw new InsufficientFundsException();
+                throw new InsufficientFundsException($"Insufficient balance on account. You have {sourceAccount.Balance}zł.");
 
             sourceAccount.Balance -= moneyToTransfer;
             destinationAccount.Balance += moneyToTransfer;
