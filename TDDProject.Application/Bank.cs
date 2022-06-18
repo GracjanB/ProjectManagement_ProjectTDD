@@ -97,7 +97,10 @@ namespace TDDProject.Application
 
         public void DeleteAccount(string name, string surname, string accountNumber)
         {
-            var account = Accounts.Single(x => x.Owner.Name == name && x.Owner.Surname == surname && x.AccountNumber == accountNumber);
+            var account = Accounts.SingleOrDefault(x => x.Owner.Name == name && x.Owner.Surname == surname && x.AccountNumber == accountNumber);
+
+            if (account is null)
+                throw new AccountNotFoundException();
 
             Accounts.Remove(account);
         }
