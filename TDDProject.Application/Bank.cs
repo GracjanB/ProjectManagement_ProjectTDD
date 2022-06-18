@@ -100,6 +100,9 @@ namespace TDDProject.Application
             if (moneyToTransfer <= 0.00m)
                 throw new ArgumentException($"Money to transfer cannot be smaller than 0.00");
 
+            if (sourceAccount.Balance < moneyToTransfer)
+                throw new InsufficientFundsException();
+
             sourceAccount.Balance -= moneyToTransfer;
             destinationAccount.Balance += moneyToTransfer;
         }
