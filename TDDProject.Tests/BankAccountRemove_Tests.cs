@@ -32,5 +32,19 @@ namespace TDDProject.Tests
             // Assert
             Assert.IsNull(Bank.Accounts.SingleOrDefault(x => x.AccountNumber == accountNumber));
         }
+
+        [Test]
+        public void DeleteAccount_AccountNotFound()
+        {
+            // Arrange
+            string accountNumber = "327439842389";
+            string name = "Gracjan";
+            string surname = "Bryt";
+
+            Assert.Throws(typeof(AccountNotFoundException), () =>
+            {
+                Bank.DeleteAccount(name, surname, accountNumber);
+            });
+        }
     }
 }
