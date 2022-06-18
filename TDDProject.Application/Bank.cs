@@ -67,7 +67,7 @@ namespace TDDProject.Application
             var account = Accounts.SingleOrDefault(x => x.AccountNumber == accountNumber);
 
             if (account is null)
-                throw new AccountNotFoundException();
+                throw new AccountNotFoundException($"Account number '{accountNumber}' does not exists.");
 
             account.Balance -= withdrawal;
         }
