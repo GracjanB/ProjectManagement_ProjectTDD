@@ -62,6 +62,13 @@ namespace TDDProject.Application
             account.Balance += deposit;
         }
 
+        public void Withdrawal(string accountNumber, decimal withdrawal)
+        {
+            var account = Accounts.Single(x => x.AccountNumber == accountNumber);
+
+            account.Balance -= withdrawal;
+        }
+
         private string GenerateAccountNumber()
         {
             string number = string.Empty;
