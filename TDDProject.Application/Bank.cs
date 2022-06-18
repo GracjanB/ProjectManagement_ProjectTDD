@@ -70,7 +70,7 @@ namespace TDDProject.Application
                 throw new AccountNotFoundException($"Account number '{accountNumber}' does not exists.");
 
             if (withdrawal <= 0.00m)
-                throw new ArgumentException();
+                throw new ArgumentException($"Withdrawal cannot be smaller than 0.00");
 
             account.Balance -= withdrawal;
         }
