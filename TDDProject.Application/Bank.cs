@@ -64,7 +64,10 @@ namespace TDDProject.Application
 
         public void Withdrawal(string accountNumber, decimal withdrawal)
         {
-            var account = Accounts.Single(x => x.AccountNumber == accountNumber);
+            var account = Accounts.SingleOrDefault(x => x.AccountNumber == accountNumber);
+
+            if (account is null)
+                throw new AccountNotFoundException();
 
             account.Balance -= withdrawal;
         }
