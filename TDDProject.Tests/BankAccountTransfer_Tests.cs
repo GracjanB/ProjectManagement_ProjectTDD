@@ -34,5 +34,28 @@ namespace TDDProject.Tests
             Assert.AreEqual(800.00m, Bank.Accounts[0].Balance);
             Assert.AreEqual(700.00m, Bank.Accounts[1].Balance);
         }
+
+        [Test]
+        public void Transfer_AccountsNotFound_Test()
+        {
+            // Arrange
+            string sourceAccountNumber = Bank.Accounts[0].AccountNumber;
+            string destinationAccountNumber = Bank.Accounts[1].AccountNumber;
+            string fakeAccount = "03759364017364592745001836";
+            Bank.Accounts[0].Balance = 1000.00m;
+            Bank.Accounts[1].Balance = 500.00m;
+            decimal moneyToSend = 200.00m;
+
+            // Assert
+            Assert.Throws(typeof(AccountNotFoundException), () =>
+            {
+                Bank.Transfer(fakeAccount, destinationAccountNumber, moneyToSend);
+            });
+
+            Assert.Throws(typeof(AccountNotFoundException), () =>
+            {
+                Bank.Transfer(sourceAccountNumber, fakeAccount, moneyToSend);
+            });
+        }
     }
 }
