@@ -79,8 +79,14 @@ namespace TDDProject.Application
 
         public void Transfer(string source, string destination, decimal moneyToTransfer)
         {
-            var sourceAccount = Accounts.Single(x => x.AccountNumber == source);
-            var destinationAccount = Accounts.Single(x => x.AccountNumber == destination);
+            var sourceAccount = Accounts.SingleOrDefault(x => x.AccountNumber == source);
+            var destinationAccount = Accounts.SingleOrDefault(x => x.AccountNumber == destination);
+
+            if (sourceAccount is null)
+                throw new AccountNotFoundException();
+
+            if (destinationAccount is null)
+                throw new AccountNotFoundException();
 
             sourceAccount.Balance -= moneyToTransfer;
             destinationAccount.Balance += moneyToTransfer;
