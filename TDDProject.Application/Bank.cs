@@ -83,6 +83,9 @@ namespace TDDProject.Application
             if (withdrawal <= 0.00m)
                 throw new ArgumentException($"Withdrawal cannot be smaller than 0.00");
 
+            if (account.Balance < withdrawal)
+                throw new InsufficientFundsException();
+
             account.Balance -= withdrawal;
         }
 
